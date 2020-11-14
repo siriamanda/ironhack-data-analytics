@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>bank</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>2396798489229429650</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGtCwwZGhscHSEoLDA0OFUkbnVsbNMNDg8QFBhXTlMua2V5
+			c1pOUy5vYmplY3RzViRjbGFzc6MREhOAAoADgASjFRYXgAWABoAI
+			gAxUdHlwZVRyb3dzVGtleXNfECZTZWxlY3Rpb25EZXRhaWxUeXBl
+			UHJpbWFyeUtleWVkRGV0YWlsc9MNDg8eHyCgoIAH0iIjJCVaJGNs
+			YXNzbmFtZVgkY2xhc3Nlc18QE05TTXV0YWJsZURpY3Rpb25hcnmj
+			JCYnXE5TRGljdGlvbmFyeVhOU09iamVjdNIODykroSqACYAL0g8t
+			Li9ZTlMuc3RyaW5ngApaYWNjb3VudF9pZNIiIzEyXxAPTlNNdXRh
+			YmxlU3RyaW5nozEzJ1hOU1N0cmluZ9IiIzU2Xk5TTXV0YWJsZUFy
+			cmF5ozU3J1dOU0FycmF50iIjJjmiJicACAARABoAJAApADIANwBJ
+			AEwAUQBTAGEAZwBuAHYAgQCIAIwAjgCQAJIAlgCYAJoAnACeAKMA
+			qACtANYA3QDeAN8A4QDmAPEA+gEQARQBIQEqAS8BMQEzATUBOgFE
+			AUYBUQFWAWgBbAF1AXoBiQGNAZUBmgAAAAAAAAIBAAAAAAAAADoA
+			AAAAAAAAAAAAAAAAAAGd
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 17270}, {712, 730}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+# select loan_id, account_id, status, (amount-payments) as debt from loan where status = 'B'
+
+# Calculate the urban population for all districts.
+#select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` 
+
+# Calculate the urban population for all district and filter out districts where rural is less than 50
+# select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` where A10 &gt; 50
+
+# Get the biggest and the smallest transaction with non-zero values in the database 
+# select min(amount) as smallest, max(amount) as largest from `trans` where amount &gt; 0
+
+# Get account information with an extra column year showing the opening year as ‘YY’. Eg 1995 will show as 95.
+# select account_id, left(date, 2) as Year from account 
+
+# select account_id, CONCAT('19', left(date, 2)) as Year from account </string>
+			<key>table</key>
+			<string>account</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+# select loan_id, account_id, status, (amount-payments) as debt from loan where status = 'B'
+
+# Calculate the urban population for all districts.
+#select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` 
+
+# Calculate the urban population for all district and filter out districts where rural is less than 50
+# select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` where A10 &gt; 50
+
+# Get the biggest and the smallest transaction with non-zero values in the database 
+# select min(amount) as smallest, max(amount) as largest from `trans` where amount &gt; 0
+
+# Get account information with an extra column year showing the opening year as ‘YY’. Eg 1995 will show as 95.
+# select account_id, left(date, 2) as Year from account 
+
+select account_id, CONCAT('19', left(date, 2)) as Year from account</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+# select loan_id, account_id, status, (amount-payments) as debt from loan where status = 'B'
+
+# Calculate the urban population for all districts.
+#select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` 
+
+# Calculate the urban population for all district and filter out districts where rural is less than 50
+# select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` where A10 &gt; 50
+
+# Get the biggest and the smallest transaction with non-zero values in the database 
+# select min(amount) as smallest, max(amount) as largest from `trans` where amount &gt; 0
+
+# Get account information with an extra column year showing the opening year as ‘YY’. Eg 1995 will show as 95.
+select account_id, CONCAT('19', left(date, 2)) as Year from account</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+# select loan_id, account_id, status, (amount-payments) as debt from loan where status = 'B'
+
+# Calculate the urban population for all districts.
+#select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` 
+
+# Calculate the urban population for all district and filter out districts where rural is less than 50
+# select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` where A10 &gt; 50
+
+# Get the biggest and the smallest transaction with non-zero values in the database 
+# select min(amount) as smallest, max(amount) as largest from `trans` where amount &gt; 0
+
+# Get account information with an extra column year showing the opening year as ‘YY’. Eg 1995 will show as 95.
+select account_id, left(date, 2) as Year from account</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+# select loan_id, account_id, status, (amount-payments) as debt from loan where status = 'B'
+
+# Calculate the urban population for all districts.
+#select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` 
+
+# Calculate the urban population for all district and filter out districts where rural is less than 50
+# select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` where A10 &gt; 50
+
+# Get the biggest and the smallest transaction with non-zero values in the database 
+# select min(amount) as smallest, max(amount) as largest from `trans` where amount &gt; 0
+
+# Get account information with an extra column year showing the opening year as ‘YY’. Eg 1995 will show as 95.
+
+select left(date, 2) as Year from account</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+# select loan_id, account_id, status, (amount-payments) as debt from loan where status = 'B'
+
+# Calculate the urban population for all districts.
+#select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` 
+
+# Calculate the urban population for all district and filter out districts where rural is less than 50
+# select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` where A10 &gt; 50
+
+# Get the biggest and the smallest transaction with non-zero values in the database 
+# select min(amount) as smallest, max(amount) as largest from `trans` where amount &gt; 0
+
+# Get account information with an extra column year showing the opening year as ‘YY’. Eg 1995 will show as 95.
+
+select left(date, 2) from account</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+# select loan_id, account_id, status, (amount-payments) as debt from loan where status = 'B'
+
+# Calculate the urban population for all districts.
+#select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` 
+
+# Calculate the urban population for all district and filter out districts where rural is less than 50
+# select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` where A10 &gt; 50
+
+select min(amount) as smallest, max(amount) as largest from `trans` where amount &gt; 0</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+# select loan_id, account_id, status, (amount-payments) as debt from loan where status = 'B'
+
+# Calculate the urban population for all districts.
+#select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` 
+
+# Calculate the urban population for all district and filter out districts where rural is less than 50
+# select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` where A10 &gt; 50
+
+select min(amount), max(amount) from `trans` where min(amount) &gt; 0</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+# select loan_id, account_id, status, (amount-payments) as debt from loan where status = 'B'
+
+# Calculate the urban population for all districts.
+#select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` 
+
+# Calculate the urban population for all district and filter out districts where rural is less than 50
+# select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` where A10 &gt; 50
+
+select min(amount), max(amount) from `trans`</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+# select loan_id, account_id, status, (amount-payments) as debt from loan where status = 'B'
+
+# Calculate the urban population for all districts.
+select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district` where A10 &gt; 50</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+# select loan_id, account_id, status, (amount-payments) as debt from loan where status = 'B'
+
+select A2 as districtnames, A10 as urbanratio, round((A10 * A4)/100, 0) as urbanpopulation from `district`</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+# select loan_id, account_id, status, (amount-payments) as debt from loan where status = 'B'
+
+select A2 as districtnames, A10 as urbanratio, round(A10 * A4)/100, 0) as urbanpopulation from `district`</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+# select loan_id, account_id, status, (amount-payments) as debt from loan where status = 'B'
+
+select A2 as districtnames, A10 as urbanratio, (A10 * A4)/100 as urbanpopulation from `district`</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+# select loan_id, account_id, status, (amount-payments) as debt from loan where status = 'B'
+
+select A2 as districtnames, A10 as urbanratio from `district`</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+select loan_id, account_id, status, (amount-payments) as debt from loan where status = 'B'</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+select loan_id, account_id, (amount-payments) as debt from loan where status = 'B'</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+select loan_id, account_id, status, (amount-payments) as debt from loan</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+select loan_id, account_id, status, (amount-payments) as balance from loan</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+select loan_id, account_id, status, amount, payments, (amount-payments) as balance from loan</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+select loan_id, account_id, status, amount, payments from loan</string>
+		<string># select distinct type from card
+
+# select distinct A2 as districtname from district
+
+# select distinct A2 as districtname, A3 as region from districtorder by A2 ASC limit 30
+
+# select 10%3
+
+#select loan_id, amount,
+#(amount-payments)/1000 as balance
+#from loan
+#where status IN ('B', 'b', 'd', 'D')
+#and amount &gt; 100000
+
+# select amount, round (amount, -2), payments from `loan` (round to closest 100)
+
+# select amount, floor(amount), payments from loan
+
+# select min(amount) from loan
+
+# select left(loan_id, 2) from loan - prints the two first digits from the left
+
+# select substring_index (issued, ' ', 1) from card     # the first text before a blank space 
+
+# select format(amount, 2) from `loan`      # add decimals
+
+# select concat(card_id, ' - ', type) from card         # add the values from two columns together
+
+#Select districts and salaries (from the district table) where salary is greater than 10000.
+# select A2 as district, A11 as salary from district whe A11 &gt; 10000
+
+# Select those loans whose contract finished and were not paid back. 
+# select loan_id, amount from loan where status in ('B')
+
+# Select card_id, type from card where type = 'junior' limit 10
+
+# Select those loans whose contract finished and not paid back. Return the debt value from the status you identified in the last activity, together with loan id and account id
+
+select loan_id, account_id, status, amount, payment from loan</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.21</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

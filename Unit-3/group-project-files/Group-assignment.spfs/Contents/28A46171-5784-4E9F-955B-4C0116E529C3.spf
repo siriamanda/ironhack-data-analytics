@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>DataScienceHire</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>2396798489229429650</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWV05TLmtleXNaTlMu
+			b2JqZWN0c1YkY2xhc3OiERKAAoADohQVgASABYAHVHR5cGVUcm93
+			c18QHVNlbGVjdGlvbkRldGFpbFR5cGVOU0luZGV4U2V00hsPHB1c
+			TlNSYW5nZUNvdW50EACABtIfICEiWiRjbGFzc25hbWVYJGNsYXNz
+			ZXNaTlNJbmRleFNldKIjJFpOU0luZGV4U2V0WE5TT2JqZWN00h8g
+			JidcTlNEaWN0aW9uYXJ5oiYkAAgAEQAaACQAKQAyADcASQBMAFEA
+			UwBcAGIAaQBxAHwAgwCGAIgAigCNAI8AkQCTAJgAnQC9AMIAzwDR
+			ANMA2ADjAOwA9wD6AQUBDgETASAAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {695, 481}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>select distinct(company) from AllData;
+
+select count(reviews) from AllData;</string>
+			<key>table</key>
+			<string>AllData</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select distinct(company) from AllData</string>
+		<string>select count(reviews) from AllData</string>
+		<string>select count(reviews) from AllData
+sort by count(reviews)</string>
+		<string>select count(reviews) from AllData
+group by company
+sort by count(reviews)</string>
+		<string>select distinct(count(company)) from AllData</string>
+		<string>select count(distict(company)) from AllData</string>
+		<string>select distict(company) from AllData</string>
+		<string># Which locations have the most oportunities
+
+select area, count(area) from AllData
+group by area
+order by count(area) DESC
+limit 10</string>
+		<string>select description from AllData</string>
+		<string>select area, count(area) from AllData
+group by area
+order by count(area) DESC
+limit 10</string>
+		<string>select count(area) from AllData
+group by area</string>
+		<string>select count(area) from AllData
+grou by area</string>
+		<string>#Lets try it! CA 3.06.1 Use a CTE to display the first account opened by a district.
+
+# Views 
+
+#slide deck on views (3 pm 2)
+
+#In this query, we are creating a view to find the current customers that might be risky in the future. For this we found the average balance for the current customers in category C and checked which are the customers that have balances more than the average balance for that status category:
+
+
+create view running_contract_ok_balances as
+with cte_running_contract_OK_balances  as (
+  select *, amount-payments as Balance
+  from bank.loan
+  where status = 'C'
+  order by Balance
+)
+select * from cte_running_contract_OK_balances
+where Balance &gt; (
+  select avg(Balance)
+  from cte_running_contract_OK_balances
+)
+order by Balance desc
+limit 20</string>
+		<string>CREATE VIEW last_weeks_transactions AS 
+WITH cte_lastweek as (
+SELECT * FROM trans 
+WHERE date &gt; (
+SELECT max(date) - 7 as last_week FROM trans))
+SELECT account_id, sum(amount) as Tots FROM cte_lastweek
+GROUP BY account_id
+ORDER BY Tots DESC</string>
+		<string>CREATE VIEW last_weeks_transactions AS  	WITH cte_lastweek as ( 	SELECT * FROM trans  	WHERE date &gt; ( 	SELECT max(date) - 7 as last_week FROM trans)) 	SELECT account_id, sum(amount) as Tots FROM cte_lastweek 	GROUP BY account_id 	ORDER BY Tots DESC</string>
+		<string>with cte_trans as (
+select *,
+(
+select max(date) from trans
+) as max_date from trans
+)
+select account_id, round(sum(amount)) as total_withdrawal
+from bank.trans
+left join cte_trans
+using (account_id)
+where date (trans.date) &gt; date_sub(max_date, interval 7)
+group by client_id</string>
+		<string>SELECT DATE_ADD(MAX(date), INTERVAL 7 DAY) FROM trans</string>
+		<string>CREATE VIEW last_week_withdrawals AS(
+SELECT account_id, type, ROUND(SUM(amount),2)
+FROM trans
+WHERE type = 'VYDAJ' AND 
+(SELECT DATE_ADD(MAX(date), INTERVAL 7 DAY) FROM trans)
+GROUP BY account_id)</string>
+		<string>CREATE VIEW last_week_withdrawals AS(
+SELECT account_id, type, ROUND(SUM(amount),2)
+FROM trans
+WHERE type = 'VYDAJ' AND  (SELECT DATE_ADD(MAX(date), INTERVAL 7 DAY) FROM trans)
+GROUP BY account_id)</string>
+		<string>CREATE VIEW last_week_withdrawals AS( SELECT account_id, type, ROUND(SUM(amount),2) FROM trans WHERE type = 'VYDAJ' AND  (SELECT DATE_ADD(MAX(date), INTERVAL 7 DAY) FROM trans) GROUP BY account_id)</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.21</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

@@ -1,0 +1,19 @@
+# defining the first and the third quartile
+q3 = radata['IC2'].quantile(.75)
+q1 = radata['IC2'].quantile(.25)
+
+# calculating the interquartile range
+iqr = q3 - q1
+
+# calculating the median
+median = radata['IC2'].median()
+
+# defining the upper limit of the data according to the 1.5*IQR rule
+outlier_limit_upper = median + 1.5*iqr
+
+# defining the lower limit of the data according to the 1.5*IQR rule
+outlier_limit_lower = median - 1.5*iqr
+
+
+# return only those rows, where the value of `IC2` is not an "upper" outlier
+radata[radata['IC2'] < outlier_limit_upper]

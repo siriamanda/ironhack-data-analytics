@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>sakila</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>2396798489229429650</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGtCwwZGhscHSEoLDA0OFUkbnVsbNMNDg8QFBhXTlMua2V5
+			c1pOUy5vYmplY3RzViRjbGFzc6MREhOAAoADgASjFRYXgAWABoAI
+			gAxUdHlwZVRyb3dzVGtleXNfECZTZWxlY3Rpb25EZXRhaWxUeXBl
+			UHJpbWFyeUtleWVkRGV0YWlsc9MNDg8eHyCgoIAH0iIjJCVaJGNs
+			YXNzbmFtZVgkY2xhc3Nlc18QE05TTXV0YWJsZURpY3Rpb25hcnmj
+			JCYnXE5TRGljdGlvbmFyeVhOU09iamVjdNIODykroSqACYAL0g8t
+			Li9ZTlMuc3RyaW5ngApZcmVudGFsX2lk0iIjMTJfEA9OU011dGFi
+			bGVTdHJpbmejMTMnWE5TU3RyaW5n0iIjNTZeTlNNdXRhYmxlQXJy
+			YXmjNTcnV05TQXJyYXnSIiMmOaImJwAIABEAGgAkACkAMgA3AEkA
+			TABRAFMAYQBnAG4AdgCBAIgAjACOAJAAkgCWAJgAmgCcAJ4AowCo
+			AK0A1gDdAN4A3wDhAOYA8QD6ARABFAEhASoBLwExATMBNQE6AUQB
+			RgFQAVUBZwFrAXQBeQGIAYwBlAGZAAAAAAAAAgEAAAAAAAAAOgAA
+			AAAAAAAAAAAAAAAAAZw=
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {574, 716}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string># Create a column with film_id and a boolean whether the film was rented in the last month
+
+select film_id,
+		sum(case
+			when rental_date between '2005-07-01' and '2005-08-01' then 1
+			else 0
+			end) as times_rented_last_month
+from film
+left join inventory using (film_id)
+left join rental using (inventory_id)
+group by 1;</string>
+			<key>table</key>
+			<string>rental</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string># Create a column with film_id and a boolean whether the film was rented in the last month
+
+select film_id,
+		sum(case
+			when rental_date between '2005-07-01' and '2005-08-01' then 1
+			else 0
+			end) as times_rented_last_month
+from film
+left join inventory using (film_id)
+left join rental using (inventory_id)
+group by 1</string>
+		<string>select * from film
+            join inventory using(film_id)
+            join rental using(inventory_id)</string>
+		<string>select * from film
+            join inventory using(film_id)
+            join rental using(inventory_id)
+            group by inventory_id, film_id</string>
+		<string>select * from film
+            join inventory using(film_id)
+            join rental using(inventory_id)
+            group by film_id</string>
+		<string>cte_activity as ( 
+select Active_users, lag(Active_users, 1) over (partition by Activity_year) as 
+last_month, Acitivty_Year, Activity_Month
+from monthly_active_users)
+select * from cte_activity
+where last_month is not null</string>
+		<string>with customer_activity as (
+ select customer_id, convert(rental_date, date) as Activity_date,
+date_format(convert(rental_date,date), '%M') as Activity_Month,
+ date_format(convert(rental_date, date), '%Y') as Activity_Year
+ from sakila.rental
+)
+select count(distinct customer_id) as Active_Users, Activity_Year, Activity_Month from customer_activity
+group by Activity_Year, Activity_Month
+order by Activity_Year, Activity_Month</string>
+		<string>with customer_activity as (
+ select customer_id, convert(rental_date, date) as Activity_date,
+ date_format(convert(rental_date, date), %M) as Activity_Month,
+ date_format(convert(rental_date, date), %Y) as Activity_Year
+ from sakila.rental
+)
+select count(distinct customer_id) as Active_Users, Activity_Year, Activity_Month from customer_activity
+group by Activity_Year, Activity_Month
+order by Activity_Year, Activity_Month</string>
+		<string>with customer_activity as (
+  select customer_id, convert(rental_date, date) as Activity_date,
+  date_format(convert(rental_date, date), %M) as Activity_Month,
+  date_format(convert(rental_date, date), %Y) as Activity_Year
+  from sakila.rental
+)
+select count(distinct customer_id) as Active_Users, Activity_Year, Activity_Month from customer_activity
+group by Activity_Year, Activity_Month
+order by Activity_Year, Activity_Month</string>
+		<string>with customer_activity as (
+  select customer_id, convert(rental_date, date) as Activity_date,
+  date_format(convert(rental_date, date), %M) as Activity_Month, 
+  date_format(convert(rental_date, date), %Y) as Activity_Year
+  from sakila.rental
+)
+select count(distinct customer_id) as Active_Users, Activity_Year, Activity_Month from customer_activity
+group by Activity_Year, Activity_Month
+order by Activity_Year, Activity_Month</string>
+		<string>select film_id, title, rental_date, amount
+from sakila.film
+inner join inventory using (film_id)
+inner join rental using (inventory_id)
+inner join payment using (rental_id)
+where rental.customer_id = (
+select customer_id
+from customer
+inner join payment
+using (customer_id)
+GROUP BY customer_id
+order by sum(amount) desc
+limit 1
+)
+order by rental_date desc</string>
+		<string>select film_id, title 
+from sakila.film
+where film_id in (
+select film_id 
+from sakila.inventory
+where inventory_id in (
+select inventory_id
+from sakila.rental
+where customer_id in (
+select sum(amount) group by customer
+)))</string>
+		<string>select concat(first_name , ' ' , last_name) as Customer_Name, email 
+from sakila.customer
+where address_id in (
+select address_id 
+from sakila.address
+where city_id in (
+select city_id
+from sakila.city
+where country_id in (
+select country_id
+from sakila.country
+where country = "Canada")))</string>
+		<string>select concat(first_name , ' ' , last_name) as Customer_Name, email 
+from sakila.customer
+where address_id in (
+select address_id 
+from sakila.address
+where city_id (
+select city_id
+from sakila.city
+where country_id (
+select country_id
+from sakila.country
+where country = "Canada")))</string>
+		<string>select concat(first_name , ' ' , last_name), email 
+from sakila.customer
+where address_id (
+select address_id 
+from sakila.address
+where city_id (
+select city_id
+from sakila.city
+where country_id (
+select country_id
+from sakila.country
+where country = "Canada")))</string>
+		<string>select concat(first_name , ' ' , last_name), email 
+from sakila.customer
+where address_id (
+select address_id 
+from sakila.address
+where city_id (
+select city_id
+from city
+where country_id (
+select country_id
+from country
+where country = "Canada")))</string>
+		<string>select concat(first_name , ' ' , last_name), email 
+from sakila.customer
+where address_id in (
+select address_id 
+from sakila.address
+where city_id (
+select city_id
+from sakila.city
+where country_id (
+select country_id
+from sakila.country
+where country = "Canada")))</string>
+		<string>select concat(first_name , ' ' , last_name), email 
+from sakila.customer
+where address_id in (
+select address_id 
+from address
+where city_id (
+select city_id
+from city
+where country_id(
+select country_id
+from country
+where country = "Canada")))</string>
+		<string>select concat(first_name , ' ' , last_name), email 
+from sakila.customer
+where address_id in (
+select address_id 
+from sakila.address
+where city_id (
+select country_id
+from city
+where country_id (
+select country_id
+from country
+where country = "Canada")))</string>
+		<string>select concat(first_name , ' ' , last_name), email 
+from sakila.customer
+where address_id (
+select address_id 
+from sakila.address
+where city_id (
+select country_id
+from city
+where country_id (
+select country_id
+from country
+where country = "Canada")))</string>
+		<string>select film_id, title 
+from film
+where film_id in (
+select film_id 
+from film_category 
+where category_id = (
+select category_id
+from category
+where name = 'Family')
+)</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.21</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

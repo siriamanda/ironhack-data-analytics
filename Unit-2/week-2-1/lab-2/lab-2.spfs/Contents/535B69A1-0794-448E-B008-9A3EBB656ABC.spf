@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>bank</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>2396798489229429650</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGtCwwZGhscHSEoLDA0OFUkbnVsbNMNDg8QFBhXTlMua2V5
+			c1pOUy5vYmplY3RzViRjbGFzc6MREhOAAoADgASjFRYXgAWABoAI
+			gAxUdHlwZVRyb3dzVGtleXNfECZTZWxlY3Rpb25EZXRhaWxUeXBl
+			UHJpbWFyeUtleWVkRGV0YWlsc9MNDg8eHyCgoIAH0iIjJCVaJGNs
+			YXNzbmFtZVgkY2xhc3Nlc18QE05TTXV0YWJsZURpY3Rpb25hcnmj
+			JCYnXE5TRGljdGlvbmFyeVhOU09iamVjdNIODykroSqACYAL0g8t
+			Li9ZTlMuc3RyaW5ngApaYWNjb3VudF9pZNIiIzEyXxAPTlNNdXRh
+			YmxlU3RyaW5nozEzJ1hOU1N0cmluZ9IiIzU2Xk5TTXV0YWJsZUFy
+			cmF5ozU3J1dOU0FycmF50iIjJjmiJicACAARABoAJAApADIANwBJ
+			AEwAUQBTAGEAZwBuAHYAgQCIAIwAjgCQAJIAlgCYAJoAnACeAKMA
+			qACtANYA3QDeAN8A4QDmAPEA+gEQARQBIQEqAS8BMQEzATUBOgFE
+			AUYBUQFWAWgBbAF1AXoBiQGNAZUBmgAAAAAAAAIBAAAAAAAAADoA
+			AAAAAAAAAAAAAAAAAAGd
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {660, 705}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>select * from bank.`account`
+where district_id &lt;=10
+
+select account_id, district_id, frequency, convert(date,date) from bank.account;
+
+select account_id, district_id, frequency, CONVERT(date,datetime) from bank.account;
+
+select distinct A3 from bank.district
+where A3 not in ('Prague', 'Central bohemia')
+
+#next is a two step process:
+select substring_index(issued, ' ', 1) from bank.card;
+select convert(SUBSTRING_INDEX(issued, ' ', 1), date) from bank.card;
+
+
+# converting the original format to the date format that we need:
+select date_format(convert(date,date), '%Y-%M-%D') from bank.loan;
+
+# if we just want to extract some specific part of the date
+select date_format(convert(date,date), '%Y') from bank.loan;
+
+# logical order of processing sql queries 
+select * from bank.card
+where type = 'classic'
+order by card_id
+limit 10;
+
+select * from bank.order
+where k_symbol = 'SIPO' and amount &gt; 5000
+order by order_id desc
+limit 10;
+
+
+select isnull('Hello');
+select isnull(card_id) from bank.card;
+
+# this is used to check all the elements of a column.
+# 0 means not null, 1 means null
+select sum(isnull(card_id)) from bank.card;
+
+select * from bank.order
+where k_symbol is null;
+
+select * from bank.order
+where k_symbol is not null and k_symbol = ' ';
+
+
+select loan_id, account_id,
+case
+when status = 'A' then 'Good - Contract Finished'
+when status = 'B' then 'Defaulter - Contract Finished'
+when status = 'C' then 'Good - Contract Running'
+else 'In Debt - Contract Running'
+end as 'Status_Description'
+from bank.loan;
+
+select A3 from bank.district;
+select distinct A3 from bank.district;
+select * from bank.order
+where k_symbol in ('leasing', 'pojistine');
+
+select * from bank.account
+where district_id in (1,2,3,4,5);
+# We are trying to get the same result using the between operator.
+# Note that 1 and 5 are included in the range of values compared/evaluated
+
+select * from bank.account
+where district_id between 1 and 5;
+
+select * from bank.loan
+where amount - payments between 1000 and 10000;
+
+select * from bank.district
+where A3 like 'north%';
+
+select * from bank.district
+where a3 like 'north_M%';
+# This would return all the results for
+# 'north  Moravia', 'northMoravia', northMiami'
+
+select * from bank.district
+where a3 regexp 'north';
+
+# Now we will take a look at another table
+# to see the difference between LIKE and REGEXP
+select * from bank.order
+where k_symbol regexp 's';
+
+select * from bank.order
+where k_symbol regexp '^s';
+
+select * from bank.order
+where k_symbol regexp 'o$';
+
+# We can include multiple conditions at the same time
+select distinct k_symbol from bank.order
+where k_symbol regexp 'ip|is';
+
+select * from bank.district
+where a2 regexp 'cesk[ey]';
+
+select * from bank.district
+where a2 regexp 'ch[e-r]';
+
+select distinct a2 from bank.district
+order by a2;
+
+select distinct a2 from bank.district
+order by a2 asc;
+
+select * from bank.district
+order by a3;
+
+select * from bank.district
+order by a3 desc;
+
+#Note that, by default, (if not specified) the order is ascending.
+#By default, in an ascending sort, special characters appear first, followed by numbers, and then letters.
+#Null values appear first if the order is ascending.
+#You can use any column from the table to sort the values even if that column is not used in the select statement.
+
+select min(date_format(convert(SUBSTRING_INDEX(issued, ' ', 1), date), '%Y')) as 'year_issued'
+from card
+where type = 'gold'
+
+
+select * from bank.order
+order by account_id, bank_to;
+
+select * from bank.order
+order by account_id, bank_to, k_symbol;
+
+select date_format(convert(SUBSTRING_INDEX(issued, ' ', 1), date), '%M %D, %Y') as year_issued,
+       date_format(convert(SUBSTRING_INDEX(issued, ' ', 1), date), '%d of %M of %Y') as fecha_emision
+from bank.card
+limit 10;
+
+
+select card_id, issued from card
+where type = 'gold'
+ORDER BY issued ASC
+LIMIT 1;
+
+select card_id, date_format(convert(issued, date), '%M-%D-%Y') as 'date issued' from card
+where type = 'gold'
+ORDER BY issued ASC
+LIMIT 1;
+
+select A2 
+from district 
+where A2 like 'K%';
+
+select A2 
+from district 
+where A2 like '%k';
+
+select distinct A2 from district
+where A2 regexp '^K';
+
+select distinct A2 from district
+where A2 regexp 'k$';
+
+select * from bank.district
+where a3 like 'north%M%';
+
+select * from bank.district
+where a3 like 'north_M%';
+
+select * from bank.district
+where a2 regexp '^ch';
+
+select distinct(type) from trans
+order by type ASC;
+
+select distinct(k_symbol) from trans
+order by k_symbol ASC;
+
+select account_id from account
+order by district_id;
+</string>
+			<key>table</key>
+			<string>account</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select account_id from account
+order by district_id</string>
+		<string>select account_id from account
+order by distric_id</string>
+		<string>select distinct(k_symbol) from trans
+order by k_symbol ASC</string>
+		<string>select distinct(type) from trans
+order by type ASC</string>
+		<string>select type from trans
+order by type ASC</string>
+		<string>select type from trans
+order by ASC</string>
+		<string>select type from trans
+order by ACS</string>
+		<string>select type from trans</string>
+		<string>select type from trans
+order by</string>
+		<string>select type from trans
+order by default</string>
+		<string>select * from trans
+Order by default</string>
+		<string>select * from trans
+Order by</string>
+		<string>select * from bank.district
+where a2 regexp '^ch'</string>
+		<string>select * from bank.district
+where a2 regexp 'ch$'</string>
+		<string>select * from bank.district
+where a3 like 'north%M%'</string>
+		<string>select * from bank.district
+where a3 like 'north_M%'</string>
+		<string>select * from bank.order
+order by account_id, bank_to, k_symbol</string>
+		<string>select A2 
+from district 
+where A2 like 'K%'</string>
+		<string>select distinct A2 from district
+where A2 regexp '^K'</string>
+		<string>select distinct A2 from district
+where A2 regexp 'k$'</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.21</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
