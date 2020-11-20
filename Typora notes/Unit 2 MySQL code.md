@@ -406,6 +406,32 @@ CREATE TABLE district_demo (
   `A16` int(11) DEFAULT NULL,
   CONSTRAINT PRIMARY KEY (A1)  -- constraint keyword is optional but its a good practice
 );
+
+CREATE TABLE IF NOT EXISTS house_price_data (
+	id int(11) UNIQUE NOT NULL,
+	date DATE,
+	bedrooms int(11),
+	bathrooms float(11),
+	sqft_living int(11),
+	sqft_lot int(11),
+	floors int(11),
+	waterfront int(11),
+	house_view int(11),
+	house_condition int(11),
+	grade int(11),
+	sqft_above int(11),
+	sqft_basement int(11),
+	yr_built int(11),
+	yr_renovated int(11),
+	zipcode int(11),
+	house_lat float(11),
+	house_long float(11),
+	sqft_living15 int(11),
+	sqft_lot15 int(11),
+	price int(11),
+	
+	PRIMARY KEY (id)
+);
 ```
 
 Drop table if exits always run before creating a table:

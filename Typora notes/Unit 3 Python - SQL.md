@@ -542,7 +542,8 @@ create view customer_status_D as
 select * from bank.loan
 where status = 'D'
 with check option;
-Or you can also use :
+
+# Or you can also use :
 
 create or replace view customer_status_D as
 select * from bank.loan
