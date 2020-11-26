@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>bank</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>2396798489229429650</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWV05TLmtleXNaTlMu
+			b2JqZWN0c1YkY2xhc3OiERKAAoADohQVgASABYAHVHR5cGVUcm93
+			c18QHVNlbGVjdGlvbkRldGFpbFR5cGVOU0luZGV4U2V00hsPHB1c
+			TlNSYW5nZUNvdW50EACABtIfICEiWiRjbGFzc25hbWVYJGNsYXNz
+			ZXNaTlNJbmRleFNldKIjJFpOU0luZGV4U2V0WE5TT2JqZWN00h8g
+			JidcTlNEaWN0aW9uYXJ5oiYkAAgAEQAaACQAKQAyADcASQBMAFEA
+			UwBcAGIAaQBxAHwAgwCGAIgAigCNAI8AkQCTAJgAnQC9AMIAzwDR
+			ANMA2ADjAOwA9wD6AQUBDgETASAAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {746, 707}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>
+#We are interested in finding information about clients such as their account numbers, their demographics (where they are from), and the loan details but only of clients that are marked as status "B". Customers with status "B" are the customers for whom the contract is finished but they have not repaid the loan.
+
+
+select a.account_id, a.district_id, a.frequency, d.A2 as District, d.A3 as Region, l.loan_id, l.amount, l.payments, l.status
+from bank.account a join bank.district d
+on a.district_id = d.A1
+join bank.loan l
+on a.account_id = l.account_id
+where l.status = "B"
+order by a.account_id;
+
+
+# stored procedure basic syntax 
+
+drop procedure if exists number_of_rows_proc;
+
+delimiter //
+create procedure number_of_rows_proc (out param1 int)
+begin
+select COUNT(*) into param1 from bank.account;
+end;
+//
+delimiter ;
+
+#return the count from the procedure 
+call number_of_rows_proc(@x);
+select @x;
+
+# how to 
+
+#DELIMITER //
+#CREATE PROCEDURE &lt;NAME&gt;
+#BEGIN
+  #SELECT field, field FROM table
+  #WHERE something = n ;
+#END //
+#DELIMITER ;
+
+
+# The customers with status "B" are the ones where the contract was finished but the loan amount was not paid. Your manager wants to keep a track of the average money not paid by such customers. We will create a stored procedure to run this query.
+
+
+drop procedure if exists average_loss_proc;
+
+delimiter //
+create procedure average_loss_proc (out param1 float)
+begin
+  select round((sum(amount) - sum(payments))/count(*), 2) into param1
+  from bank.loan
+  where status = "B";
+end;
+//
+delimiter ;
+
+call average_loss_proc(@x);
+select round(@x,2) as Average_loss_per_customer;
+
+
+# Stored Procedure to return rows from query results
+
+drop procedure if exists return_query_rows_proc;
+
+delimiter //
+create procedure return_query_rows_proc()
+begin
+  select *
+  from bank.loan
+  where status = "B";
+end;
+//
+delimiter ;
+
+call return_query_rows_proc();
+
+</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>drop procedure if exists return_query_rows_proc;
+create procedure return_query_rows_proc()
+begin
+  select *
+  from bank.loan
+  where status = "B";
+end;;
+call return_query_rows_proc()</string>
+		<string>call average_loss_proc(@x);
+select round(@x,2) as Average_loss_per_customer</string>
+		<string>drop procedure if exists average_loss_proc;
+create procedure average_loss_proc (out param1 float)
+begin
+  select round((sum(amount) - sum(payments))/count(*), 2) into param1
+  from bank.loan
+  where status = "B";
+end;</string>
+		<string>call number_of_rows_proc(@x);
+select @x</string>
+		<string>create procedure number_of_rows_proc (out param1 int)
+begin
+select COUNT(*) into param1 from bank.account;
+end;</string>
+		<string>drop procedure if exists number_of_rows_proc</string>
+		<string>select a.account_id, a.district_id, a.frequency, d.A2 as District, d.A3 as Region, l.loan_id, l.amount, l.payments, l.status
+from bank.account a join bank.district d
+on a.district_id = d.A1
+join bank.loan l
+on a.account_id = l.account_id
+where l.status = "B"
+order by a.account_id</string>
+		<string>#We are interested in finding information about clients such as their account numbers, their demographics (where they are from), and the loan details but only of clients that are marked as status "B". Customers with status "B" are the customers for whom the contract is finished but they have not repaid the loan.
+
+
+select a.account_id, a.district_id, a.frequency, d.A2 as District, d.A3 as Region, l.loan_id, l.amount, l.payments, l.status
+from bank.account a join bank.district d
+on a.district_id = d.A1
+join bank.loan l
+on a.account_id = l.account_id
+where l.status = "B"
+order by a.account_id</string>
+		<string>create procedure proc_no_movie_features
+@'special_features' SET(10)
+(out param1 int)
+begin 
+select count(*) 
+from film
+where special_features = @special_features;
+end;</string>
+		<string>create procedure proc_no_movie_features
+@'special_features' set
+(out param1 int)
+begin 
+select count(*) 
+from film
+where special_features = @special_features;
+end;</string>
+		<string>call proc_no_2006_release(@a)</string>
+		<string>create procedure proc_no_2006_release
+(out param1 int)
+begin 
+select count(film_id) 
+from film
+where release_year = 2006;
+end;</string>
+		<string>select count(film_id) 
+from film
+where release_year = 2006</string>
+		<string>select count(film_id) 
+from film
+where release_id = '2006'</string>
+		<string>select count(film_id) 
+from film
+where release_id = 2006</string>
+		<string>call proc_no_of_rows(@x)</string>
+		<string>create procedure proc_no_of_rows 
+(out param1 int)
+begin 
+select Count(*) from account;
+end;</string>
+		<string>create procedure proc_num_of_rows 
+(out param1 int)
+begin
+select count(*) from account;
+end;;
+delimeter ;</string>
+		<string>select count(*) from account</string>
+		<string># 15 Write an SQL query to fetch the list of employees with the same salary.
+
+select w.worker_id, w.first_name, w.salary
+from worker w
+join worker o
+on w.salary = o.salary
+and w.worker_id != o.worker_id</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.21</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
